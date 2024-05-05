@@ -784,7 +784,7 @@ validate_for_options([], Into = false, {uniq, true}, Reduce = false, Sort, Retur
   elixir_errors:file_warn(Meta, E, ?MODULE, for_with_unused_uniq),
   AccWithoutUniq = lists:keydelete(uniq, 1, Acc),
   validate_for_options([], Into, false, Reduce, Sort, Return, Meta, E, AccWithoutUniq);
-validate_for_options([], Into, _Uniq, _Reduce, Sort, _Return, _Meta, _E, _Acc) when Into /= false, Sort /= false ->
+validate_for_options([], Into, _Uniq, _Reduce, Sort, _Return, _Meta, _E, _Acc) when Into /= false, Into /= {into, []}, Sort /= false ->
   {error, for_conflicting_sort_into};
 validate_for_options([], _Into, _Uniq, Reduce, _Sort, _Return, _Meta, _E, Acc) ->
   {ok, Reduce, lists:reverse(Acc)}.
